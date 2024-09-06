@@ -24,5 +24,4 @@ export class RegisterComponent implements OnInit {
   getErrorMessage(control: FormControl): string {
     return this.formService.getErrorMessage(control);
   }
-
 }
