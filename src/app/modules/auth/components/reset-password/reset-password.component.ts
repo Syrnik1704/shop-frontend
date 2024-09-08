@@ -13,11 +13,11 @@ export class ResetPasswordComponent implements OnInit {
 
   resetPasswordForm!: FormGroup<ResetPasswordForm>;
 
-  constructor(private formService: FormService, private route: ActivatedRoute) {}
+  constructor(private formService: FormService, private route: ActivatedRoute) {
+    this.resetPasswordForm = this.formService.initResetPasswordForm();
+  }
 
   ngOnInit(): void {
-    this.resetPasswordForm = this.formService.initResetPasswordForm();
-
     this.route.paramMap.subscribe({
       next: (params) => {
         console.log(params.get("uid"));

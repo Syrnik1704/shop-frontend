@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -9,6 +8,10 @@ import {CoreModule} from "./modules/core/core.module";
 import { EffectsModule } from '@ngrx/effects';
 import {AuthModule} from "./modules/auth/auth.module";
 import {authReducer} from "./modules/auth/store/auth.reducer";
+import {ToastrModule} from "ngx-toastr";
+import {AuthEffects} from "./modules/auth/store/auth.effects";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
 
 @NgModule({
   declarations: [
@@ -19,8 +22,13 @@ import {authReducer} from "./modules/auth/store/auth.reducer";
     AppRoutingModule,
     CoreModule,
     AuthModule,
-    StoreModule.forRoot({auth: authReducer}, {}),
-    EffectsModule.forRoot([])
+    BrowserAnimationsModule,
+    StoreModule.forRoot({auth: authReducer}),
+    EffectsModule.forRoot([AuthEffects]),
+    ToastrModule.forRoot({
+      positionClass: "toast-top-right",
+      timeOut: 3000,
+    })
   ],
   providers: [
     provideAnimationsAsync()

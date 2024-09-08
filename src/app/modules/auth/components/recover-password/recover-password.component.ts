@@ -8,13 +8,11 @@ import {FormService} from "../../../core/services/form.service";
   templateUrl: './recover-password.component.html',
   styleUrl: './recover-password.component.scss'
 })
-export class RecoverPasswordComponent implements OnInit {
+export class RecoverPasswordComponent {
 
   recoverPasswordForm!: FormGroup<RecoverPasswordForm>;
 
-  constructor(private formService: FormService) {}
-
-  ngOnInit(): void {
+  constructor(private formService: FormService) {
     this.recoverPasswordForm = this.formService.initRecoverPasswordForm();
   }
 

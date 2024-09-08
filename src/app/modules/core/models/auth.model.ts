@@ -18,3 +18,19 @@ export interface RegisterData {
   login: string;
   password: string;
 }
+
+export interface AuthResponse {
+  timestamp: string;
+  message: string;
+  code: string;
+}
+
+export interface RecoverPasswordData {
+  email: string;
+}
+
+export interface ResetPasswordData {
+  password: string;
+  uid: string;
+}
+

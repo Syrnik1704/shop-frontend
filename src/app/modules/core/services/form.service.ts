@@ -48,7 +48,7 @@ export class FormService {
           Validators.maxLength(50)
         ],
         nonNullable: true}),
-    })
+    }, {validators: [matchPasswordsValidator("password", "retypedPassword")]})
   }
 
   initRecoverPasswordForm(): FormGroup<RecoverPasswordForm> {

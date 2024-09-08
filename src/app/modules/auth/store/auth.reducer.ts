@@ -22,7 +22,11 @@ const _authReducer = createReducer(initialState,
   on(AuthActions.loginSuccess, (state, action) => ({
     ...state,
     loading: false,
-    user: action.userData,
+    user: new User(
+      action.userData.login,
+      action.userData.email,
+      action.userData.role
+    ),
     error: null,
   })),
   on(AuthActions.loginFailure, (state, action) => ({
@@ -50,6 +54,6 @@ const _authReducer = createReducer(initialState,
   }))
 );
 
-export function authReducer(authState: AuthState | undefined, action: Action): AuthState {
+export function authReducer(authState: AuthState | undefined, action: Action) {
   return _authReducer(authState, action)
 }
