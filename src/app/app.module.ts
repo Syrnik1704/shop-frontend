@@ -27,7 +27,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     EffectsModule.forRoot([AuthEffects]),
     ToastrModule.forRoot({
       positionClass: "toast-top-right",
-      timeOut: 3000,
+      timeOut: 5000,
     })
   ],
   providers: [

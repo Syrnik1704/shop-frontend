@@ -1,4 +1,7 @@
 <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+<!--  <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert" *ngIf="errorMessage$ | async as error">-->
+<!--    {{ error }}-->
+<!--  </div>-->
   <div class="form-input d-flex justify-content-center">
     <mat-form-field appearance="fill">
       <mat-label>Email address</mat-label>
@@ -27,11 +30,13 @@
       <mat-error *ngIf="controls.retypedPassword.invalid">{{ getErrorMessage(controls.retypedPassword) }}</mat-error>
     </mat-form-field>
   </div>
+  <div class="mt-2 mb-2 d-flex justify-content-center" *ngIf="loading$ | async">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
   <div class="d-flex justify-content-center mt-5">
     <button mat-raised-button class="register-button" color="primary" [disabled]="registerForm.invalid">Register</button>
-  </div>
-  <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert" *ngIf="errorMessage$ | async as error">
-    {{ error }}
   </div>
 </form>
 

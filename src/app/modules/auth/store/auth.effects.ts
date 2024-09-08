@@ -20,7 +20,10 @@ export class AuthEffects {
           this.toastr.success('You logged in!', 'Success');
           return AuthActions.loginSuccess({userData: {...user}})
         }),
-        catchError(error => of(AuthActions.loginFailure({error: "Login error occurred"})))
+        catchError(err => {
+          console.log(err);
+          return of(AuthActions.loginFailure({error: err}))
+        })
       );
     })
   ))
@@ -31,10 +34,13 @@ export class AuthEffects {
       return this.authService.register(action.registerData).pipe(
         map((user) => {
           this.router.navigate(["/login"]);
-          this.toastr.success('Your account has beed created!\n We send email with activation link', 'Success')
+          this.toastr.success('Your account has beed created!\n We send email with link to activate Your account', 'Success')
           return AuthActions.registerSuccess()
         }),
-        catchError(error => of(AuthActions.registerFailure({error: "Register error occurred"})))
+        catchError(err => {
+          console.log(err);
+          return of(AuthActions.registerFailure({error: err}));
+        })
       );
     })
   ))

@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import {RouterLink, RouterLinkActive} from "@angular/router";
-import {HttpClientModule} from "@angular/common/http";
-
+import {errorHandlingInterceptor} from "./interceptors/error-handling.interceptor";
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 
 @NgModule({
@@ -14,10 +14,14 @@ import {HttpClientModule} from "@angular/common/http";
     CommonModule,
     RouterLink,
     RouterLinkActive,
-    HttpClientModule,
   ],
   exports: [
     HeaderComponent
+  ],
+  providers: [
+    provideHttpClient(
+      withInterceptors([errorHandlingInterceptor])
+    )
   ]
 })
-export class CoreModule { }
+export class CoreModule {}

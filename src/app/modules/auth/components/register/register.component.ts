@@ -1,25 +1,30 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {RegisterForm} from "../../../core/models/forms.model";
 import {FormService} from "../../../core/services/form.service";
 import * as AuthActions from "../../store/auth.actions";
 import {AppState} from "../../../../store/app.reducer";
 import {Store} from "@ngrx/store";
-import {Observable} from "rxjs";
-import {authErrorSelector} from "../../store/auth.selectors";
+import {Observable, Subscription, take} from "rxjs";
+import {authErrorSelector, authLoadingSelector} from "../../store/auth.selectors";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent implements OnDestroy {
+export class RegisterComponent implements OnInit, OnDestroy {
+  private errorMessageSubscription!: Subscription;
   registerForm!: FormGroup<RegisterForm>;
   errorMessage$: Observable<string | null>;
+  loading$: Observable<boolean>;
 
-  constructor(private formService: FormService, private store: Store<AppState>) {
+  constructor(private formService: FormService, private store: Store<AppState>,
+              private toastr: ToastrService) {
     this.registerForm = this.formService.initRegisterForm();
     this.errorMessage$ = this.store.select(authErrorSelector);
+    this.loading$ = this.store.select(authLoadingSelector);
   }
 
   get controls(): RegisterForm {
@@ -42,7 +47,16 @@ export class RegisterComponent implements OnDestroy {
     );
   }
 
+  ngOnInit(): void {
+    this.errorMessageSubscription = this.errorMessage$.subscribe((message: string | null) => {
+      if (message) {
+        this.toastr.error(message, "ERROR");
+      }
+    });
+  }
+
   ngOnDestroy(): void {
+    this.errorMessageSubscription.unsubscribe();
     this.store.dispatch(AuthActions.clearError());
   }
 }
