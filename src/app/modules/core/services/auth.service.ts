@@ -7,7 +7,7 @@ import {
   RegisterData,
   AuthResponse,
   ResetPasswordData,
-  UserData
+  UserData, LoggedInResponse
 } from "../models/auth.model";
 import {Observable} from "rxjs";
 
@@ -26,6 +26,12 @@ export class AuthService {
 
   logout(): Observable<AuthResponse> {
     return this.httpClient.get<AuthResponse>(`${environment.apiUrl}/auth/logout`, {
+      withCredentials: true //cookies
+    });
+  }
+
+  isLoggedIn(): Observable<LoggedInResponse> {
+    return this.httpClient.get<LoggedInResponse>(`${environment.apiUrl}/auth/logged-in`, {
       withCredentials: true //cookies
     });
   }

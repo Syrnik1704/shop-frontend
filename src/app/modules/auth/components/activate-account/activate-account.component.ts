@@ -25,7 +25,7 @@ export class ActivateAccountComponent implements OnInit {
         this.toastr.success("Your account has been activated!", "SUCCESS");
       }, error: (error) => {
         this.errorMessage = error;
-        this.toastr.error(this.errorMessage?.toString(), "ERROR");
+        this.toastr.error(`Error occurred while account activation: ${error}`, "ERROR");
       }
     })
   }

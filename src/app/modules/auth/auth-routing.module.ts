@@ -5,13 +5,14 @@ import {RegisterComponent} from "./components/register/register.component";
 import {ActivateAccountComponent} from "./components/activate-account/activate-account.component";
 import {RecoverPasswordComponent} from "./components/recover-password/recover-password.component";
 import {ResetPasswordComponent} from "./components/reset-password/reset-password.component";
+import {unauthGuard} from "../core/guards/unauthorized.guard";
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'activate/:uid', component: ActivateAccountComponent },
-  { path: 'recover-password', component: RecoverPasswordComponent },
-  { path: 'reset-password/:uid', component: ResetPasswordComponent },
+  { path: 'login', component: LoginComponent, canActivate: [unauthGuard]},
+  { path: 'register', component: RegisterComponent, canActivate: [unauthGuard] },
+  { path: 'activate/:uid', component: ActivateAccountComponent, canActivate: [unauthGuard] },
+  { path: 'recover-password', component: RecoverPasswordComponent, canActivate: [unauthGuard] },
+  { path: 'reset-password/:uid', component: ResetPasswordComponent, canActivate: [unauthGuard] },
 ];
 
 @NgModule({
