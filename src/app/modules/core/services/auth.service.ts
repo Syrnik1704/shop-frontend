@@ -19,11 +19,15 @@ export class AuthService {
   constructor(private httpClient: HttpClient) { }
 
   login(body: LoginData): Observable<UserData> {
-    return this.httpClient.post<UserData>(`${environment.apiUrl}/auth/login`, body);
+    return this.httpClient.post<UserData>(`${environment.apiUrl}/auth/login`, body, {
+      withCredentials: true //cookies
+    });
   }
 
   logout(): Observable<AuthResponse> {
-    return this.httpClient.get<AuthResponse>(`${environment.apiUrl}/auth/logout`);
+    return this.httpClient.get<AuthResponse>(`${environment.apiUrl}/auth/logout`, {
+      withCredentials: true //cookies
+    });
   }
 
   register(body: RegisterData): Observable<AuthResponse> {

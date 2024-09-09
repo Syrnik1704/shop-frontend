@@ -51,7 +51,18 @@ const _authReducer = createReducer(initialState,
   on(AuthActions.clearError, (state, action) => ({
     ...state,
     error: null,
-  }))
+  })),
+  on(AuthActions.logout, (state, action) => ({
+    ...state,
+  })),
+  on(AuthActions.logoutSuccess, (state, action) => ({
+    ...state,
+    user: null,
+    error: null,
+  })),
+  on(AuthActions.logoutFailure, (state, action) => ({
+    ...state,
+  })),
 );
 
 export function authReducer(authState: AuthState | undefined, action: Action) {

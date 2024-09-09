@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {switchMap} from "rxjs/operators";
+import {AuthService} from "../../../core/services/auth.service";
+import {AuthResponse} from "../../../core/models/auth.model";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-activate-account',
@@ -7,12 +11,21 @@ import {ActivatedRoute} from "@angular/router";
   styleUrl: './activate-account.component.scss'
 })
 export class ActivateAccountComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
+  errorMessage!: null | string;
+
+  constructor(private route: ActivatedRoute, private authService: AuthService,
+              private toastr: ToastrService, private router: Router) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe({
-      next: (params) => {
-        console.log(params.get("uid"));
+    this.route.paramMap.pipe(
+      switchMap(params => this.authService.activateAccount(params.get("uid") as string)),
+    ).subscribe({
+      next: (response: AuthResponse) => {
+        this.router.navigate(["/login"]);
+        this.toastr.success("Your account has been activated!", "SUCCESS");
+      }, error: (error) => {
+        this.errorMessage = error;
+        this.toastr.error(this.errorMessage?.toString(), "ERROR");
       }
     })
   }

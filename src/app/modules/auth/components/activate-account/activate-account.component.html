@@ -1,1 +1,6 @@
-<p>activate-account works!</p>
+<h5 *ngIf="!errorMessage">Account activation in progress...</h5>
+<div class="mt-2 mb-2 d-flex justify-content-center">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>

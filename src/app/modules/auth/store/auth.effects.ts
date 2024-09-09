@@ -12,16 +12,19 @@ export class AuthEffects {
   private actions$ = inject(Actions);
   private toastr = inject(ToastrService);
 
+  constructor(private authService: AuthService, private router: Router) {}
+
   login$ = createEffect(() => this.actions$.pipe(
     ofType(AuthActions.login),
     switchMap((action) => {
       return this.authService.login(action.loginData).pipe(
         map((user) => {
-          this.toastr.success('You logged in!', 'Success');
+          this.router.navigate(["/"]);
+          this.toastr.success(`You logged in! Hi ${user.login}!`, 'Success');
           return AuthActions.loginSuccess({userData: {...user}})
         }),
         catchError(err => {
-          console.log(err);
+          this.toastr.error(`Error occurred while logging in: ${err}`, 'ERROR');
           return of(AuthActions.loginFailure({error: err}))
         })
       );
@@ -34,16 +37,32 @@ export class AuthEffects {
       return this.authService.register(action.registerData).pipe(
         map((user) => {
           this.router.navigate(["/login"]);
-          this.toastr.success('Your account has beed created!\n We send email with link to activate Your account', 'Success')
+          this.toastr.success('Your account has beed created!     We send email with link to activate Your account', 'Success')
           return AuthActions.registerSuccess()
         }),
         catchError(err => {
-          console.log(err);
+          this.toastr.error(`Error occurred while registration: ${err}`, 'ERROR');
           return of(AuthActions.registerFailure({error: err}));
         })
       );
     })
   ))
 
-  constructor(private authService: AuthService, private router: Router) {}
+  logout$ = createEffect(() => this.actions$.pipe(
+    ofType(AuthActions.logout),
+    switchMap((action) => {
+      return this.authService.logout().pipe(
+        map(() => {
+          this.router.navigate(["/login"]);
+          this.toastr.success(`You logged out! Goodbye!`, 'Success');
+          return AuthActions.logoutSuccess()
+        }),
+        catchError(err => {
+          this.toastr.error(`Error occurred while logging out: ${err}`, "ERROR");
+          return of(AuthActions.logoutFailure())
+        })
+      );
+    })
+  ))
+
 }

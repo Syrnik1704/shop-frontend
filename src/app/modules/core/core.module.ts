@@ -4,6 +4,7 @@ import { HeaderComponent } from './components/header/header.component';
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {errorHandlingInterceptor} from "./interceptors/error-handling.interceptor";
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import {MatButton} from "@angular/material/button";
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
     CommonModule,
     RouterLink,
     RouterLinkActive,
+    MatButton,
   ],
   exports: [
     HeaderComponent

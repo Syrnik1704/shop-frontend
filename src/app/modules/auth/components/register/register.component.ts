@@ -14,16 +14,12 @@ import {ToastrService} from "ngx-toastr";
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent implements OnInit, OnDestroy {
-  private errorMessageSubscription!: Subscription;
+export class RegisterComponent implements OnDestroy {
   registerForm!: FormGroup<RegisterForm>;
-  errorMessage$: Observable<string | null>;
   loading$: Observable<boolean>;
 
-  constructor(private formService: FormService, private store: Store<AppState>,
-              private toastr: ToastrService) {
+  constructor(private formService: FormService, private store: Store<AppState>) {
     this.registerForm = this.formService.initRegisterForm();
-    this.errorMessage$ = this.store.select(authErrorSelector);
     this.loading$ = this.store.select(authLoadingSelector);
   }
 
@@ -37,26 +33,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   onRegister() {
     const {email, login, password, retypedPassword} = this.registerForm.getRawValue();
-    console.log(email, login, password, retypedPassword);
     if (password !== retypedPassword) {
       return;
     }
-    console.log(AuthActions.register({registerData: {login, email, password}}))
     this.store.dispatch(
       AuthActions.register({registerData: {login, email, password}})
     );
   }
 
-  ngOnInit(): void {
-    this.errorMessageSubscription = this.errorMessage$.subscribe((message: string | null) => {
-      if (message) {
-        this.toastr.error(message, "ERROR");
-      }
-    });
-  }
-
   ngOnDestroy(): void {
-    this.errorMessageSubscription.unsubscribe();
     this.store.dispatch(AuthActions.clearError());
   }
 }
