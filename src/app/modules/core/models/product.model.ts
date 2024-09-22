@@ -1,9 +1,12 @@
-export interface Product {
-  uid: string;
-  shortId: number;
-  active: boolean;
+export interface SimpleProduct {
   name: string;
-  category: string;
   price: number;
-  imageUrl: string;
+  createdAt: string;
+  imageUrls: string;
+  mainDescription: string;
+}
+
+export interface GetProductsResponse {
+  products: SimpleProduct[];
+  totalCount: number;
 }

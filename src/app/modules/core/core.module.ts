@@ -5,6 +5,8 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
 import {errorHandlingInterceptor} from "./interceptors/error-handling.interceptor";
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import {MatButton} from "@angular/material/button";
+import {MatPaginatorIntl} from "@angular/material/paginator";
+import {CustomMatPaginatorIntl} from "./material/mat-paginator-custom-intl";
 
 
 @NgModule({
@@ -23,7 +25,11 @@ import {MatButton} from "@angular/material/button";
   providers: [
     provideHttpClient(
       withInterceptors([errorHandlingInterceptor])
-    )
+    ),
+    {
+      provide: MatPaginatorIntl,
+      useClass: CustomMatPaginatorIntl,
+    }
   ]
 })
 export class CoreModule {}

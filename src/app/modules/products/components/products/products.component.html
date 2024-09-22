@@ -2,7 +2,6 @@
   <div class="products-list">
     <app-product *ngFor="let product of products" [product]="product"></app-product>
   </div>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" [length]="products.length" showFirstLastButtons>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]" [length]="totalCount" showFirstLastButtons></mat-paginator>
 
-  </mat-paginator>
 </section>

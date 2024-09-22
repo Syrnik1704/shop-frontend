@@ -1,8 +1,8 @@
 <div class="card">
-  <img [src]="product.imageUrl" [alt]="product.name" class="card-img-top">
+  <img [src]="product.imageUrls" [alt]="product.name" class="card-img-top">
   <div class="card-body">
     <h4 class="card-title">{{ product.name }}</h4>
     <p>{{ product.price  | currency: "$" }}</p>
-    <p class="card-text">Product description</p>
+    <p class="card-text">{{ product.mainDescription }}</p>
   </div>
 </div>
