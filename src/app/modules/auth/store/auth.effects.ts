@@ -5,7 +5,7 @@ import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {catchError, map, switchMap} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
-import {of} from "rxjs";
+import {EMPTY, of} from "rxjs";
 
 @Injectable()
 export class AuthEffects {
@@ -64,5 +64,17 @@ export class AuthEffects {
       );
     })
   ))
+
+  autoLogin$ = createEffect(() => this.actions$.pipe(
+    ofType(AuthActions.autoLogin),
+    switchMap(() => {
+      return this.authService.autoLogin().pipe(
+        map((user) => {
+          return AuthActions.autoLoginSuccess({userData: {...user}})
+        }),
+        catchError((err) => of(AuthActions.autoLoginFailure()))
+      );
+    })
+  ));
 
 }

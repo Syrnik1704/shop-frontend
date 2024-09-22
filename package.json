@@ -10,6 +10,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "^18.2.3",
     "@angular/forms": "^18.2.3",
     "@angular/material": "^18.2.3",
     "@angular/platform-browser-dynamic": "^18.2.3",

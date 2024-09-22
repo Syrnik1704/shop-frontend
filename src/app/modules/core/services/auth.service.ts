@@ -36,6 +36,12 @@ export class AuthService {
     });
   }
 
+  autoLogin(): Observable<UserData> {
+    return this.httpClient.get<UserData>(`${environment.apiUrl}/auth/auto-login`, {
+      withCredentials: true
+    });
+  }
+
   register(body: RegisterData): Observable<AuthResponse> {
     return this.httpClient.post<AuthResponse>(`${environment.apiUrl}/auth/register`, body);
   }

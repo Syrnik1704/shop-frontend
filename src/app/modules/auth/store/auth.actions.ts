@@ -21,3 +21,10 @@ export const logoutSuccess = createAction("[Auth] Logout Success");
 
 export const logoutFailure = createAction("[Auth] Logout Failure");
 
+export const autoLogin = createAction('[Auth] Auto Login');
+
+export const autoLoginSuccess = createAction("[Auth] Auto Login Success", props<{userData: UserData}>());
+
+export const autoLoginFailure = createAction("[Auth] Auto Login Failure");
+
+
