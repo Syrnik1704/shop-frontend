@@ -9,6 +9,27 @@
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
+    <div class='searched-params'>
+      <mat-form-field>
+        <mat-label>Sort by</mat-label>
+        <mat-select [formControl]='sortControl'>
+          <mat-option value=''>-</mat-option>
+          <mat-option value='price'>Price</mat-option>
+          <mat-option value='category'>Category</mat-option>
+          <mat-option value='name'>Product name</mat-option>
+          <mat-option value='creation_date'>Creation date</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Sort</mat-label>
+        <mat-select [formControl]='orderControl'>
+          <mat-option value=''>-</mat-option>
+          <mat-option value='asc'>ascending</mat-option>
+          <mat-option value='desc'>descending</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
     <div class="d-flex justify-content-end">
       <button mat-raised-button color="primary" (click)="searchProducts()">
         Search

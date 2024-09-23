@@ -16,6 +16,7 @@ import {
   MatOption
 } from "@angular/material/autocomplete";
 import {MatButton} from "@angular/material/button";
+import {MatSelect} from "@angular/material/select";
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {MatButton} from "@angular/material/button";
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatOption,
-    MatButton
+    MatButton,
+    MatSelect
   ]
 })
 export class ProductsModule { }

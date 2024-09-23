@@ -13,13 +13,27 @@ export class ProductsService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getProducts(pageIndex: number = 1, itemsPerPage: number = 5, name: string | null = null): Observable<GetProductsResponse> {
+  getProducts(
+    pageIndex: number = 1,
+    itemsPerPage: number = 5,
+    name: string | null = null,
+    sorting: string | null = null,
+    order: string | null = null
+  ): Observable<GetProductsResponse> {
     let params = new HttpParams()
       .append("_page", pageIndex)
       .append("_limit", itemsPerPage);
 
     if (name) {
       params = params.append("name_like", name);
+    }
+
+    if (sorting) {
+      params = params.append("_sort", sorting);
+    }
+
+    if (order) {
+      params = params.append("_order", order);
     }
 
     return this.httpClient.get<SimpleProduct[]>(`${this.apiUrl}`, {

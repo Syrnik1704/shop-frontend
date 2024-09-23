@@ -21,9 +21,13 @@ export class ProductsComponent implements AfterViewInit, OnDestroy, OnInit {
   errorMessage: string | null = null;
 
   searchControl = new FormControl<string>("");
+  sortControl = new FormControl<string>("");
+  orderControl = new FormControl<string>("");
+
   filteredOptions!: Observable<SimpleProduct[]>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
 
   constructor(
     private productService: ProductsService,
@@ -50,7 +54,14 @@ export class ProductsComponent implements AfterViewInit, OnDestroy, OnInit {
           const pageIndex = queryMap.get("page") ? Number(queryMap.get("page")) : 1;
           const itemsPerPage = queryMap.get("limit") ? Number(queryMap.get("limit")) : this.paginator.pageSize;
           const productName = queryMap.get("name") ? queryMap.get("name") : null;
-          return this.productService.getProducts(pageIndex, itemsPerPage, productName);
+          const sort = queryMap.get("sort_by") ? queryMap.get("sort_by") : null;
+          const order = queryMap.get("order") ? queryMap.get("order") : null;
+          return this.productService.getProducts(
+            pageIndex,
+            itemsPerPage,
+            productName,
+            sort,
+            order);
         }),
         map(({ products, totalCount }) => {
           this.totalCount = totalCount;
@@ -67,12 +78,7 @@ export class ProductsComponent implements AfterViewInit, OnDestroy, OnInit {
     this.subscription.add(
       this.paginator.page.subscribe({
         next: () => {
-          const pageIndex = this.paginator.pageIndex + 1;
-          const itemsPerPage = this.paginator.pageSize;
-          this.router.navigate([], {
-            relativeTo: this.route,
-            queryParams: { page: pageIndex, limit: itemsPerPage, name: this.searchControl.value }
-          })
+          this.navigateToSearchedParams();
         }
       })
     )
@@ -85,19 +91,30 @@ export class ProductsComponent implements AfterViewInit, OnDestroy, OnInit {
   searchProducts() {
     this.paginator.pageIndex = 0;
     this.paginator.pageSize = 5;
+    this.navigateToSearchedParams();
+  }
+
+  navigateToSearchedParams() {
+    const queryParams: {[key: string]: string | number} ={
+      page: this.paginator.pageIndex + 1,
+      limit: this.paginator.pageSize,
+    }
+
+    if (this.searchControl.value) {
+      queryParams["name"] = this.searchControl.value as string;
+    }
+
+    if (this.sortControl.value) {
+      queryParams['sort_by'] = this.sortControl.value;
+    }
+
+    if (this.orderControl.value) {
+      queryParams['order'] = this.orderControl.value;
+    }
+
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: {
-        page: this.paginator.pageIndex + 1,
-        limit: this.paginator.pageSize,
-        name: this.searchControl.value as string,
-      }
+      queryParams: queryParams
     })
-    // this.productService.getProducts(1, 5, this.searchControl.value).subscribe({
-    //   next: ({ products, totalCount }) => {
-    //     this.products = [...products];
-    //     this.totalCount = totalCount;
-    //   }
-    // })
   }
 }
