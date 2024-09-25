@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {GetProductsResponse, SimpleProduct} from "../models/product.model";
+import {GetProductsResponse, Product, SimpleProduct} from "../models/product.model";
 import {map} from "rxjs/operators";
 
 @Injectable({
@@ -51,5 +51,15 @@ export class ProductsService {
         return { products: [...response.body], totalCount: totalCount }
       })
     );
+  }
+
+  getProduct(name: string, createdAt: string): Observable<Product[]> {
+    const params = new HttpParams()
+      .append("name_like", name)
+      .append("creation_date", createdAt);
+
+    return this.httpClient.get<Product[]>(`${this.apiUrl}`, {
+      params
+    })
   }
 }

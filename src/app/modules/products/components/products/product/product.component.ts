@@ -8,4 +8,8 @@ import {SimpleProduct} from "../../../../core/models/product.model";
 })
 export class ProductComponent {
   @Input() product!: SimpleProduct;
+
+  getProductDetailsUrl() {
+    return `/products/${this.product.name}-${this.product.createdAt.replaceAll("-", "")}`
+  }
 }

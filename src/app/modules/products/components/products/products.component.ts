@@ -2,7 +2,7 @@ import {Component, AfterViewInit, ViewChild, OnDestroy, OnInit} from '@angular/c
 import {ProductsService} from "../../../core/services/products.service";
 import {SimpleProduct} from "../../../core/models/product.model";
 import {MatPaginator} from "@angular/material/paginator";
-import {debounceTime, distinctUntilChanged, Observable, Subscription} from "rxjs";
+import {debounceTime, distinctUntilChanged, filter, Observable, Subscription} from "rxjs";
 import {map, switchMap} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
@@ -15,7 +15,7 @@ import {FormControl} from "@angular/forms";
 })
 export class ProductsComponent implements AfterViewInit, OnDestroy, OnInit {
 
-  products: SimpleProduct[] = []
+  products: SimpleProduct[] = [];
   totalCount = 0;
   subscription = new Subscription();
   errorMessage: string | null = null;
@@ -28,54 +28,61 @@ export class ProductsComponent implements AfterViewInit, OnDestroy, OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-
   constructor(
     private productService: ProductsService,
     private route: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     this.filteredOptions = this.searchControl.valueChanges.pipe(
       debounceTime(500),
       distinctUntilChanged(),
-      switchMap((value) => this.productService.getProducts(1, 10, value)),
+      switchMap((value) => this.productService.getProducts(1, 5, value)),
       map(({ products }) => {
-        console.log(products);
         return [...products];
       })
-    )
+    );
   }
 
   ngAfterViewInit() {
-    this.route.queryParamMap
+    this.route.queryParams
       .pipe(
-        switchMap((queryMap) => {
-          const pageIndex = queryMap.get("page") ? Number(queryMap.get("page")) : 1;
-          const itemsPerPage = queryMap.get("limit") ? Number(queryMap.get("limit")) : this.paginator.pageSize;
-          const productName = queryMap.get("name") ? queryMap.get("name") : null;
-          const sort = queryMap.get("sort_by") ? queryMap.get("sort_by") : null;
-          const order = queryMap.get("order") ? queryMap.get("order") : null;
-          const category = queryMap.get("category") ? queryMap.get("category") : null;
+        switchMap((params) => {
+          const pageIndex = params['page'] ? Number(params['page']) : 1;
+          const itemsPerPage = params['limit'] ? Number(params['limit']) : this.paginator.pageSize || 5;
+          const productName = params['name'] ? params['name'] : null;
+          const sort = params['sort_by'] ? params['sort_by'] : null;
+          const order = params['order'] ? params['order'] : null;
+          const category = params['category'] ? params['category'] : null;
           return this.productService.getProducts(
             pageIndex,
             itemsPerPage,
             productName,
             sort,
             order,
-            category);
+            category
+          );
         }),
         map(({ products, totalCount }) => {
           this.totalCount = totalCount;
           this.products = [...products];
+          // Ustaw wartości dla paginatora na podstawie URL
+          this.paginator.pageIndex = this.route.snapshot.queryParamMap.get("page")
+            ? Number(this.route.snapshot.queryParamMap.get("page")) - 1
+            : 0;
+          this.paginator.pageSize = this.route.snapshot.queryParamMap.get("limit")
+            ? Number(this.route.snapshot.queryParamMap.get("limit"))
+            : 5;
         })
       )
       .subscribe({
         error: (error) => {
-          this.errorMessage = error
+          this.errorMessage = error;
           this.toastr.error(`Error occurred while displaying products: ${error}`, "ERROR");
         }
-      })
+      });
 
     this.subscription.add(
       this.paginator.page.subscribe({
@@ -83,7 +90,7 @@ export class ProductsComponent implements AfterViewInit, OnDestroy, OnInit {
           this.navigateToSearchedParams();
         }
       })
-    )
+    );
   }
 
   ngOnDestroy() {
@@ -97,10 +104,10 @@ export class ProductsComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   navigateToSearchedParams() {
-    const queryParams: {[key: string]: string | number} ={
+    const queryParams: { [key: string]: string | number } = {
       page: this.paginator.pageIndex + 1,
       limit: this.paginator.pageSize,
-    }
+    };
 
     const categoryShortId = this.route.snapshot.queryParamMap.get("category");
 
@@ -123,6 +130,6 @@ export class ProductsComponent implements AfterViewInit, OnDestroy, OnInit {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: queryParams
-    })
+    });
   }
 }
