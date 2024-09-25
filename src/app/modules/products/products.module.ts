@@ -17,12 +17,14 @@ import {
 } from "@angular/material/autocomplete";
 import {MatButton} from "@angular/material/button";
 import {MatSelect} from "@angular/material/select";
+import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 
 
 @NgModule({
   declarations: [
     ProductsComponent,
-    ProductComponent
+    ProductComponent,
+    ProductDetailsComponent
   ],
   imports: [
     CommonModule,
