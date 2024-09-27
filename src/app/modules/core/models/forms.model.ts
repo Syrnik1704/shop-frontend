@@ -20,3 +20,8 @@ export interface ResetPasswordForm {
   password: FormControl<string>;
   retypedPassword: FormControl<string>;
 }
+
+export interface AddCategoryForm {
+  name: FormControl<string>;
+}
+

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {LoginForm, RecoverPasswordForm, RegisterForm, ResetPasswordForm} from "../models/forms.model";
+import {AddCategoryForm, LoginForm, RecoverPasswordForm, RegisterForm, ResetPasswordForm} from "../models/forms.model";
 import {matchPasswordsValidator} from "../../auth/components/shared/validators/match-passwords.validator";
 
 @Injectable({
@@ -81,6 +81,15 @@ export class FormService {
         nonNullable: true
       })
     }, {validators: [matchPasswordsValidator("password", "retypedPassword")]})
+  }
+
+  initAddCategoryForm(): FormGroup<AddCategoryForm> {
+    return new FormGroup({
+      name: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+    });
   }
 
   getErrorMessage(formControl: FormControl): string {
