@@ -18,13 +18,15 @@ import {
 import {MatButton} from "@angular/material/button";
 import {MatSelect} from "@angular/material/select";
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
+import { ImagesCarouselComponent } from './components/products/product-details/images-carousel/images-carousel.component';
 
 
 @NgModule({
   declarations: [
     ProductsComponent,
     ProductComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    ImagesCarouselComponent
   ],
   imports: [
     CommonModule,

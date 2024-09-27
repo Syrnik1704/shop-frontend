@@ -11,7 +11,11 @@ export interface GetProductsResponse {
   totalCount: number;
 }
 
-export interface Product extends Omit<SimpleProduct, "imageUrls"> {
+export interface Product {
+  name: string;
+  price: number;
+  createdAt: string;
+  mainDescription: string;
   uid: string;
   active: boolean;
   htmlDescription: string;

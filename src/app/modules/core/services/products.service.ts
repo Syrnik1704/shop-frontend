@@ -57,7 +57,6 @@ export class ProductsService {
     const params = new HttpParams()
       .append("name_like", name)
       .append("creation_date", createdAt);
-
     return this.httpClient.get<Product[]>(`${this.apiUrl}`, {
       params
     })

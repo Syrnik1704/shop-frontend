@@ -1,1 +1,48 @@
-<p>product-details works!</p>
+<ng-container *ngIf='product'>
+  <div class='row'>
+    <div class='col-md-6 col-12'>
+      <app-images-carousel [productName]='product.name' [imageUrls]='product.imageUrls'></app-images-carousel>
+    </div>
+    <div class='col-md-6 col-12 d-flex align-items-center justify-content-center'>
+      <div class='text-center'>
+        <p class='product-name'>{{product.name}}</p>
+        <p class='h4 text-secondary'>{{product.price}} $</p>
+        <button class="btn btn-lg btn-success mt-3">
+          Buy now!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-4"/>
+
+  <div class='row'>
+    <div class='col-md-12 mt-3'>
+      <p class='product-desc'>Description</p>
+      <br>
+      <div [innerHtml]='product.htmlDescription'></div>
+    </div>
+  </div>
+
+  <hr class="my-4"/>
+
+  <div class='row' *ngIf='parameters'>
+    <div class='col-md-12 mt-3'>
+      <p class='product-desc'>Specification</p>
+      <br>
+      <h3 class='text-center'>Parameters</h3>
+      <table class='table table-bordered'>
+        <tbody>
+        <tr *ngFor='let parameter of parameters | keyvalue'>
+          <td class='text-end table-cell table-cell-key'><span class='product-parameter-key'>{{parameter.key}}</span></td>
+          <td class='text-start table-cell table-cell-value'>{{parameter.value}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr class="my-4"/>
+
+  <br>
+</ng-container>
