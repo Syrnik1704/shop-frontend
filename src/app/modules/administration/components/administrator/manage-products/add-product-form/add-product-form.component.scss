@@ -13,3 +13,13 @@ mat-form-field {
     font-size: 24px;
   }
 }
+
+.form-control-wrapper {
+  display: flex;
+  gap: 5px;
+
+  .form-array-input {
+    width: 50%;
+  }
+}
+

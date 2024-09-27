@@ -26,14 +26,15 @@ export class UploadedImagesComponent implements OnInit {
   }
 
   deleteImage(url: string) {
-    const [, uuid] = url.split('uid=');
-    this.imageService.deleteImage(uuid).subscribe({
+    const [, uid] = url.split('uid=');
+    this.imageService.deleteImage(uid).subscribe({
       next: () => {
         this.imageUrls = this.imageUrls.filter((image) => image.url !== url);
         this.deleteImageUrl.emit([...this.imageUrls]);
         if (this.imageUrls.length > 0) {
           this.activeImage = this.imageUrls[0].url;
         }
+        this.toastr.success("Image deleted successfully", "SUCCESS");
       },
       error: (error) => {
         this.errorMsg = error;

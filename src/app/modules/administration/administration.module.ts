@@ -19,6 +19,9 @@ import {
   MatExpansionPanelDescription, MatExpansionPanelHeader,
   MatExpansionPanelTitle
 } from "@angular/material/expansion";
+import {AngularEditorModule} from "@kolkov/angular-editor";
+import {MatTooltip, MatTooltipModule} from "@angular/material/tooltip";
+import {MatOption, MatSelect} from "@angular/material/select";
 
 
 @NgModule({
@@ -33,6 +36,7 @@ import {
   imports: [
     CommonModule,
     AdministrationRoutingModule,
+    AngularEditorModule,
     MatFormField,
     ReactiveFormsModule,
     MatButton,
@@ -46,7 +50,10 @@ import {
     MatExpansionPanelHeader,
     MatAccordion,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    MatTooltipModule,
+    MatSelect,
+    MatOption
   ]
 })
 export class AdministrationModule { }

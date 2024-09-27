@@ -2,7 +2,13 @@ import { Injectable } from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {GetProductsResponse, Product, SimpleProduct} from "../models/product.model";
+import {
+  AddProductData,
+  GetProductsResponse,
+  PostProductResponse,
+  Product,
+  SimpleProduct
+} from "../models/product.model";
 import {map} from "rxjs/operators";
 
 @Injectable({
@@ -61,4 +67,16 @@ export class ProductsService {
       params
     })
   }
+
+  addProduct(addProductData: AddProductData): Observable<PostProductResponse> {
+    console.log(addProductData.mainDescription)
+    return this.httpClient.post<PostProductResponse>(
+      `${this.apiUrl}`,
+      addProductData,
+      {
+        withCredentials: true,
+      }
+    );
+  }
+
 }

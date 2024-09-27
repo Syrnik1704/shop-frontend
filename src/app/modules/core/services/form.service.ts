@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AddCategoryForm, LoginForm, RecoverPasswordForm, RegisterForm, ResetPasswordForm} from "../models/forms.model";
+import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
+import {
+  AddCategoryForm,
+  LoginForm,
+  PostProduct,
+  RecoverPasswordForm,
+  RegisterForm,
+  ResetPasswordForm
+} from "../models/forms.model";
 import {matchPasswordsValidator} from "../../auth/components/shared/validators/match-passwords.validator";
 
 @Injectable({
@@ -110,4 +117,42 @@ export class FormService {
     }
     return "";
   }
+
+  initAddProductForm(): FormGroup<PostProduct> {
+    return new FormGroup({
+      name: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      mainDescription: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      htmlDescription: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      price: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      category: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      parameters: new FormArray([
+        new FormGroup({
+          key: new FormControl('', {
+            validators: [Validators.required],
+            nonNullable: true,
+          }),
+          value: new FormControl('', {
+            validators: [Validators.required],
+            nonNullable: true,
+          }),
+        }),
+      ]),
+    });
+  }
+
 }
