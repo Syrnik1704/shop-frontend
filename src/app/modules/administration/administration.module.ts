@@ -5,17 +5,30 @@ import { AdministrationRoutingModule } from './administration-routing.module';
 import { AdministratorComponent } from './components/administrator/administrator.component';
 import { AddCategoryFormComponent } from './components/administrator/add-category-form/add-category-form.component';
 import { ManageProductsComponent } from './components/administrator/manage-products/manage-products.component';
-import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatError, MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatButton} from "@angular/material/button";
 import {MatInput} from "@angular/material/input";
+import { AddProductFormComponent } from './components/administrator/manage-products/add-product-form/add-product-form.component';
+import { DeleteProductFormComponent } from './components/administrator/manage-products/delete-product-form/delete-product-form.component';
+import { UploadedImagesComponent } from './components/administrator/manage-products/add-product-form/uploaded-images/uploaded-images.component';
+import {MatIcon, MatIconModule} from "@angular/material/icon";
+import {
+  MatAccordion,
+  MatExpansionPanel,
+  MatExpansionPanelDescription, MatExpansionPanelHeader,
+  MatExpansionPanelTitle
+} from "@angular/material/expansion";
 
 
 @NgModule({
   declarations: [
     AdministratorComponent,
     AddCategoryFormComponent,
-    ManageProductsComponent
+    ManageProductsComponent,
+    AddProductFormComponent,
+    DeleteProductFormComponent,
+    UploadedImagesComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +38,15 @@ import {MatInput} from "@angular/material/input";
     MatButton,
     MatInput,
     MatLabel,
-    MatError
+    MatError,
+    MatIcon,
+    MatExpansionPanelDescription,
+    MatExpansionPanel,
+    MatExpansionPanelTitle,
+    MatExpansionPanelHeader,
+    MatAccordion,
+    MatFormFieldModule,
+    MatIconModule
   ]
 })
 export class AdministrationModule { }
