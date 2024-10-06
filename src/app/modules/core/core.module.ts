@@ -7,18 +7,20 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import {MatButton} from "@angular/material/button";
 import {MatPaginatorIntl} from "@angular/material/paginator";
 import {CustomMatPaginatorIntl} from "./material/mat-paginator-custom-intl";
+import {MatIcon} from "@angular/material/icon";
 
 
 @NgModule({
   declarations: [
     HeaderComponent
   ],
-  imports: [
-    CommonModule,
-    RouterLink,
-    RouterLinkActive,
-    MatButton,
-  ],
+    imports: [
+        CommonModule,
+        RouterLink,
+        RouterLinkActive,
+        MatButton,
+        MatIcon,
+    ],
   exports: [
     HeaderComponent
   ],
