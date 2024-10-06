@@ -5,7 +5,7 @@ import {Observable} from "rxjs";
 import {
   AddProductData,
   GetProductsResponse,
-  PostProductResponse,
+  ProductResponse,
   Product,
   SimpleProduct
 } from "../models/product.model";
@@ -68,15 +68,19 @@ export class ProductsService {
     })
   }
 
-  addProduct(addProductData: AddProductData): Observable<PostProductResponse> {
-    console.log(addProductData.mainDescription)
-    return this.httpClient.post<PostProductResponse>(
-      `${this.apiUrl}`,
-      addProductData,
-      {
-        withCredentials: true,
-      }
-    );
+  addProduct(addProductData: AddProductData): Observable<ProductResponse> {
+    return this.httpClient.post<ProductResponse>(`${this.apiUrl}`, addProductData, {
+      withCredentials: true,
+    });
   }
+
+  deleteProduct(uid: string): Observable<ProductResponse> {
+    const params = new HttpParams().append('uid', uid);
+    return this.httpClient.delete<ProductResponse>(`${this.apiUrl}`, {
+      params,
+      withCredentials: true,
+    });
+  }
+
 
 }

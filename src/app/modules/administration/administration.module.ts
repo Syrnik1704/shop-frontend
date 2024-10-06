@@ -22,6 +22,9 @@ import {
 import {AngularEditorModule} from "@kolkov/angular-editor";
 import {MatTooltip, MatTooltipModule} from "@angular/material/tooltip";
 import {MatOption, MatSelect} from "@angular/material/select";
+import { DeleteProductDialogComponent } from './components/administrator/manage-products/delete-product-form/delete-product-dialog/delete-product-dialog.component';
+import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle} from "@angular/material/dialog";
+import {MatAutocomplete, MatAutocompleteTrigger} from "@angular/material/autocomplete";
 
 
 @NgModule({
@@ -31,7 +34,8 @@ import {MatOption, MatSelect} from "@angular/material/select";
     ManageProductsComponent,
     AddProductFormComponent,
     DeleteProductFormComponent,
-    UploadedImagesComponent
+    UploadedImagesComponent,
+    DeleteProductDialogComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +57,13 @@ import {MatOption, MatSelect} from "@angular/material/select";
     MatIconModule,
     MatTooltipModule,
     MatSelect,
-    MatOption
+    MatOption,
+    MatDialogContent,
+    MatDialogActions,
+    MatDialogClose,
+    MatDialogTitle,
+    MatAutocomplete,
+    MatAutocompleteTrigger
   ]
 })
 export class AdministrationModule { }
