@@ -7,9 +7,13 @@
       <div class='text-center'>
         <p class='product-name'>{{product.name}}</p>
         <p class='h4 text-secondary'>{{product.price}} $</p>
-        <button class="btn btn-lg btn-success mt-3">
-          Buy now!
-        </button>
+        <div class='d-flex justify-content-center'>
+          <app-quantity-control [formControl]='quantityControl'></app-quantity-control>
+        </div>
+        <div class='d-flex justify-content-center my-2'>
+          <button mat-raised-button color='primary' (click)='addToBasket()'>Add to basket</button>
+        </div>
+
       </div>
     </div>
   </div>
@@ -20,7 +24,7 @@
     <div class='col-md-12 mt-3'>
       <p class='product-desc'>Description</p>
       <br>
-      <div *ngIf='htmlContent' [innerHtml]='htmlContent'></div>
+      <div *ngIf='htmlContent' [innerHtml]='htmlContent' class='html-text'></div>
     </div>
   </div>
 

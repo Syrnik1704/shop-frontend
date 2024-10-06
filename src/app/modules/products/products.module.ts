@@ -19,6 +19,7 @@ import {MatButton} from "@angular/material/button";
 import {MatSelect} from "@angular/material/select";
 import { ProductDetailsComponent } from './components/products/product-details/product-details.component';
 import { ImagesCarouselComponent } from './components/products/product-details/images-carousel/images-carousel.component';
+import {BasketModule} from "../basket/basket.module";
 
 
 @NgModule({
@@ -28,18 +29,19 @@ import { ImagesCarouselComponent } from './components/products/product-details/i
     ProductDetailsComponent,
     ImagesCarouselComponent
   ],
-  imports: [
-    CommonModule,
-    ProductsRoutingModule,
-    MatPaginator,
-    MatFormField,
-    MatInput,
-    MatLabel,
-    ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatOption,
-    MatButton,
-    MatSelect
-  ]
+    imports: [
+        CommonModule,
+        ProductsRoutingModule,
+        MatPaginator,
+        MatFormField,
+        MatInput,
+        MatLabel,
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatOption,
+        MatButton,
+        MatSelect,
+        BasketModule
+    ]
 })
 export class ProductsModule { }
