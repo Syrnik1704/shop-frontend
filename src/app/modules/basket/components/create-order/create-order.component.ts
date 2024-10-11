@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Location} from '@angular/common'
 import {Router} from "@angular/router";
+import {CustomerFormComponent} from "./customer-form/customer-form.component";
 
 @Component({
   selector: 'app-create-order',
@@ -8,6 +9,7 @@ import {Router} from "@angular/router";
   styleUrl: './create-order.component.scss'
 })
 export class CreateOrderComponent implements OnInit {
+  @ViewChild(CustomerFormComponent) customerFormComponent!: CustomerFormComponent;
 
   constructor(private location: Location, private router: Router) {}
 
@@ -20,4 +22,9 @@ export class CreateOrderComponent implements OnInit {
       this.router.navigate(['/']);
     }
   }
+
+  order() {
+    console.log(this.customerFormComponent.customerForm.getRawValue());
+  }
+
 }

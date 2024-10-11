@@ -18,7 +18,7 @@ export class RegisterComponent implements OnDestroy {
   registerForm!: FormGroup<RegisterForm>;
   loading$: Observable<boolean>;
 
-  constructor(private formService: FormService, private store: Store<AppState>) {
+  constructor(private formService: FormService, private store: Store<AppState>, private toastr: ToastrService) {
     this.registerForm = this.formService.initRegisterForm();
     this.loading$ = this.store.select(authLoadingSelector);
   }
@@ -28,7 +28,9 @@ export class RegisterComponent implements OnDestroy {
   }
 
   getErrorMessage(control: FormControl): string {
-    return this.formService.getErrorMessage(control);
+    const error = this.formService.getErrorMessage(control);
+    this.toastr.error(`${error}`, "ERROR");
+    return error;
   }
 
   onRegister() {

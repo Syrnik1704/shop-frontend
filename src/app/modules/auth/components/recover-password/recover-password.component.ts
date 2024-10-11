@@ -20,7 +20,9 @@ export class RecoverPasswordComponent {
   }
 
   getErrorMessage(control: FormControl): string {
-    return this.formService.getErrorMessage(control);
+    const error = this.formService.getErrorMessage(control);
+    this.toastr.error(`${error}`, "ERROR");
+    return error;
   }
 
   onPasswordRecover() {

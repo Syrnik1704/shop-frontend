@@ -11,6 +11,10 @@ import {MatIcon} from "@angular/material/icon";
 import {MatButton} from "@angular/material/button";
 import {MatTooltip} from "@angular/material/tooltip";
 import { CreateOrderComponent } from './components/create-order/create-order.component';
+import { CustomerFormComponent } from './components/create-order/customer-form/customer-form.component';
+import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
+import { PhoneControlComponent } from './controles/phone-control/phone-control.component';
 
 
 @NgModule({
@@ -19,7 +23,9 @@ import { CreateOrderComponent } from './components/create-order/create-order.com
     BasketProductComponent,
     QuantityControlComponent,
     InputOnlyNumberDirective,
-    CreateOrderComponent
+    CreateOrderComponent,
+    CustomerFormComponent,
+    PhoneControlComponent
   ],
   exports: [
     QuantityControlComponent
@@ -30,7 +36,11 @@ import { CreateOrderComponent } from './components/create-order/create-order.com
     ReactiveFormsModule,
     MatIcon,
     MatButton,
-    MatTooltip
+    MatTooltip,
+    MatFormField,
+    MatInput,
+    MatError,
+    MatLabel
   ]
 })
 export class BasketModule { }

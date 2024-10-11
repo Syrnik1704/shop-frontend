@@ -1,0 +1,11 @@
+<mat-form-field appearance="fill" class="prefix">
+  <mat-label>Area code</mat-label>
+  <input [formControl]="numberPrefixControl" matInput>
+  <mat-error *ngIf="numberPrefixControl.errors">Bad area code</mat-error>
+</mat-form-field>
+<mat-form-field appearance="fill" class="number">
+  <mat-label>Phone number</mat-label>
+  <input [formControl]="numberControl" matInput>
+  <mat-error *ngIf="numberControl.errors">Number should contains 9 digits</mat-error>
+</mat-form-field>
+
