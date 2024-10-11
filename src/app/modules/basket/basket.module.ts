@@ -10,6 +10,7 @@ import { InputOnlyNumberDirective } from './directives/input-only-number.directi
 import {MatIcon} from "@angular/material/icon";
 import {MatButton} from "@angular/material/button";
 import {MatTooltip} from "@angular/material/tooltip";
+import { CreateOrderComponent } from './components/create-order/create-order.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {MatTooltip} from "@angular/material/tooltip";
     BasketComponent,
     BasketProductComponent,
     QuantityControlComponent,
-    InputOnlyNumberDirective
+    InputOnlyNumberDirective,
+    CreateOrderComponent
   ],
   exports: [
     QuantityControlComponent

@@ -15,7 +15,7 @@
       <p class='text-center'>Cost without delivery:</p>
       <p class='text-center'>{{summaryPrice | currency: '$'}}</p>
       <div class='d-flex justify-content-center'>
-        <button mat-raised-button color='primary'>Open basket</button>
+        <button mat-raised-button color='primary' (click)="navigateToCreateOrder()">Open basket</button>
       </div>
     </div>
   </div>

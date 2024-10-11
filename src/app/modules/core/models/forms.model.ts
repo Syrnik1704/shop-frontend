@@ -34,4 +34,22 @@ export interface PostProduct {
   parameters: FormArray<FormGroup<{ value: FormControl<string>; key: FormControl<string> }>>;
 }
 
+export interface CustomerForm {
+  firstName: FormControl<string>;
+  lastName: FormControl<string>;
+  phone: FormControl<string>;
+  email: FormControl<string>;
+}
+
+export interface AddressForm {
+  city: FormControl<string>;
+  street: FormControl<string>;
+  number: FormControl<string>;
+  postCode: FormControl<string>;
+}
+
+export interface DeliveryForm {
+  uid: FormControl<string>;
+}
+
 
