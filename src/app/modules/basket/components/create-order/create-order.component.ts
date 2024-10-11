@@ -4,6 +4,8 @@ import {Router} from "@angular/router";
 import {CustomerFormComponent} from "./customer-form/customer-form.component";
 import {AddressFormComponent} from "./address-form/address-form.component";
 import {DeliveryFormComponent} from "./delivery-form/delivery-form.component";
+import {OrdersService} from "../../../core/services/orders.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-create-order',
@@ -11,11 +13,17 @@ import {DeliveryFormComponent} from "./delivery-form/delivery-form.component";
   styleUrl: './create-order.component.scss'
 })
 export class CreateOrderComponent implements OnInit {
+
+  errorMsg: null | string = null;
+
   @ViewChild(CustomerFormComponent) customerFormComponent!: CustomerFormComponent;
   @ViewChild(AddressFormComponent) addressFormComponent!: AddressFormComponent;
   @ViewChild(DeliveryFormComponent) deliveryFormComponent!: DeliveryFormComponent;
 
-  constructor(private location: Location, private router: Router) {}
+  constructor(private location: Location,
+              private router: Router,
+              private ordersService: OrdersService,
+              private toastr: ToastrService) {}
 
   ngOnInit() {
     const locationState = this.location.getState() as {
@@ -33,7 +41,20 @@ export class CreateOrderComponent implements OnInit {
       this.addressFormComponent.addressForm.valid &&
       this.deliveryFormComponent.deliveryForm.valid
     ) {
-      // wykonywac zapytanie http - dodawanie nowego zamowienia
+      this.ordersService
+        .addOrder({
+          address: this.addressFormComponent.addressForm.getRawValue(),
+          deliver: this.deliveryFormComponent.deliveryForm.getRawValue(),
+          customerDetails: this.customerFormComponent.customerForm.getRawValue(),
+        })
+        .subscribe({
+          error: (err) => {
+            this.errorMsg = err;
+            this.toastr.error(`Error occurred while adding order: ${err}`, "ERROR");
+          },
+        });
+    } else {
+      this.toastr.error(`The form is not completed as it should be. Please check correctness of each field and if delivery type is chosen`, "ERROR");
     }
   }
 

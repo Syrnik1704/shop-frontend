@@ -33,7 +33,8 @@ import {MatRadioButton, MatRadioGroup} from "@angular/material/radio";
     DeliveryFormComponent
   ],
   exports: [
-    QuantityControlComponent
+    QuantityControlComponent,
+    BasketProductComponent
   ],
   imports: [
     CommonModule,

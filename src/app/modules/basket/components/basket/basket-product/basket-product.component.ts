@@ -9,6 +9,7 @@ import {ToastrService} from "ngx-toastr";
   styleUrl: './basket-product.component.scss'
 })
 export class BasketProductComponent {
+  @Input() basketView = true;
   @Input() basketProduct!: BasketProduct;
   @Output() deleteProductUid = new EventEmitter<string>();
 

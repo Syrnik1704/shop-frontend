@@ -1,0 +1,30 @@
+<section *ngIf='order'>
+  <h1>ORDER DETAILS</h1>
+  <br><br>
+  <div class='row my-3'>
+    <div class='col-md-4'>
+      <h2>GENERAL</h2>
+      <p>ORDER NUMBER: <b>{{order.orders}}</b></p>
+      <p>STATUS: <b>{{order.status}}</b></p>
+      <p>SUMMARY PRICE: <b>{{order.summaryPrice | currency: '$'}}</b></p>
+    </div>
+    <div class='col-md-4' *ngIf='order.address as address'>
+      <h2>ADDRESS</h2>
+      <p>CITY/TOWN: <b>{{address.city}}</b></p>
+      <p>STREET: <b>{{address.street}}</b></p>
+      <p>HOUSE NUMBER/FLAT: <b>{{address.number}}</b></p>
+      <p>POSTCODE: <b>{{address.postCode}}</b></p>
+    </div>
+    <div class='col-md-4'>
+      <h2>DELIVERY TYPE:</h2>
+      <p><b>{{order.deliver.name}}</b></p>
+    </div>
+  </div>
+  <br><br>
+  <div class='row'>
+    <h2>ORDERED PRODUCTS:</h2>
+    <div class='basket-product' *ngFor='let basketProduct of order.items'>
+      <app-basket-product [basketView]='false' [basketProduct]='basketProduct'></app-basket-product>
+    </div>
+  </div>
+</section>
