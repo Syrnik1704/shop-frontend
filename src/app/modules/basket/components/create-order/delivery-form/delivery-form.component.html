@@ -1,0 +1,9 @@
+<h2>Choose delivery type:</h2>
+<form [formGroup]='deliveryForm'>
+  <mat-radio-group [formControl]='controls.uid' class='delivery-radio-group'>
+    <mat-radio-button *ngFor='let deliveryType of deliveryTypes' [value]='deliveryType.uid' class='delivery-radio-btn'>
+      {{deliveryType.name}} - {{deliveryType.price | currency: '$'}}
+    </mat-radio-button>
+  </mat-radio-group>
+</form>
+

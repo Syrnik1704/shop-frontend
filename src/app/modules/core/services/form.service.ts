@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {
-  AddCategoryForm, CustomerForm,
+  AddCategoryForm, AddressForm, CustomerForm, DeliveryForm,
   LoginForm,
   PostProduct,
   RecoverPasswordForm,
@@ -180,5 +180,34 @@ export class FormService {
     });
   }
 
+  initAddressForm(): FormGroup<AddressForm> {
+    return new FormGroup({
+      city: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      street: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      number: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+      postCode: new FormControl('', {
+        validators: [Validators.required, Validators.pattern(/^\d{2}-\d{3}$/)],
+        nonNullable: true,
+      }),
+    });
+  }
+
+  initDeliveryForm(): FormGroup<DeliveryForm> {
+    return new FormGroup({
+      uid: new FormControl('', {
+        validators: [Validators.required],
+        nonNullable: true,
+      }),
+    });
+  }
 
 }

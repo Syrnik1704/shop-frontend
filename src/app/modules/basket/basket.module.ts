@@ -15,6 +15,9 @@ import { CustomerFormComponent } from './components/create-order/customer-form/c
 import {MatError, MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import { PhoneControlComponent } from './controles/phone-control/phone-control.component';
+import { AddressFormComponent } from './components/create-order/address-form/address-form.component';
+import { DeliveryFormComponent } from './components/create-order/delivery-form/delivery-form.component';
+import {MatRadioButton, MatRadioGroup} from "@angular/material/radio";
 
 
 @NgModule({
@@ -25,7 +28,9 @@ import { PhoneControlComponent } from './controles/phone-control/phone-control.c
     InputOnlyNumberDirective,
     CreateOrderComponent,
     CustomerFormComponent,
-    PhoneControlComponent
+    PhoneControlComponent,
+    AddressFormComponent,
+    DeliveryFormComponent
   ],
   exports: [
     QuantityControlComponent
@@ -40,7 +45,9 @@ import { PhoneControlComponent } from './controles/phone-control/phone-control.c
     MatFormField,
     MatInput,
     MatError,
-    MatLabel
+    MatLabel,
+    MatRadioGroup,
+    MatRadioButton
   ]
 })
 export class BasketModule { }
