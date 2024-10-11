@@ -29,4 +29,13 @@ export class BasketComponent implements OnInit {
     });
   }
 
+  deleteProduct(uid: string) {
+    this.basketProducts = this.basketProducts.filter(
+      (product) => product.uid !== uid
+    );
+    this.summaryPrice = this.basketProducts.reduce((total, product) => {
+      return total + product.summaryPrice;
+    }, 0);
+  }
+
 }

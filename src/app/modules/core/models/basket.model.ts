@@ -1,7 +1,7 @@
 import {ServerResponse} from "./server-response.model";
 
 export interface BasketProduct {
-  uuid: string;
+  uid: string;
   name: string;
   imageUrl: string;
   price: number;

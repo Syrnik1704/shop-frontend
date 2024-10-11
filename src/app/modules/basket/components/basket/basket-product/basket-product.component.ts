@@ -1,5 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {BasketProduct} from "../../../../core/models/basket.model";
+import {BasketService} from "../../../../core/services/basket.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-basket-product',
@@ -8,4 +10,19 @@ import {BasketProduct} from "../../../../core/models/basket.model";
 })
 export class BasketProductComponent {
   @Input() basketProduct!: BasketProduct;
+  @Output() deleteProductUid = new EventEmitter<string>();
+
+  constructor(private basketService: BasketService, private toastr: ToastrService) {
+  }
+
+  deleteProductFromBasket() {
+    this.basketService.deleteProductFromBasket(this.basketProduct.uid).subscribe({
+      next: () => {
+        this.toastr.success("Product has been deleted from basket", "SUCCESS");
+        this.deleteProductUid.emit(this.basketProduct.uid);
+      }, error: (err) => {
+        this.toastr.error(`Product hasn't been deleted from basket, error occurred: ${err}`, "ERROR");
+      }
+    })
+  }
 }
