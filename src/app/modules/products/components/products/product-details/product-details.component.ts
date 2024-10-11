@@ -5,6 +5,9 @@ import {ProductsService} from "../../../../core/services/products.service";
 import {Product} from "../../../../core/models/product.model";
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import {FormControl} from "@angular/forms";
+import {BasketService} from "../../../../core/services/basket.service";
+import {ToastrService} from "ngx-toastr";
+import {PostBasketBody} from "../../../../core/models/basket.model";
 
 @Component({
   selector: 'app-product-details',
@@ -22,7 +25,10 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productsService: ProductsService,
-    private sanitizer: DomSanitizer) {
+    private sanitizer: DomSanitizer,
+    private basketService: BasketService,
+    private toastr: ToastrService
+  ) {
     this.product = null;
   };
 
@@ -52,6 +58,19 @@ export class ProductDetailsComponent implements OnInit {
 
   addToBasket() {
     console.log(this.quantityControl.value);
+    const body: PostBasketBody = {
+      product: this.product!.uid,
+      quantity: Number(this.quantityControl.value),
+    };
+    this.basketService.addProductToBasket(body).subscribe({
+      next: () => {
+        this.toastr.success("Products have been added to basket", "SUCCESS");
+      },
+      error: (err) => {
+        this.toastr.warning(`Products haven't been added to basket, something went wrong: ${err}`, "WARNING");
+      },
+    });
+
   }
 
 }

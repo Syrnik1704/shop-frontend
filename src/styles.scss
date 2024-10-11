@@ -2,6 +2,10 @@
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 @import '../node_modules/ngx-toastr/toastr-bs5-alert';
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 

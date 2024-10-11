@@ -7,6 +7,9 @@ import { BasketProductComponent } from './components/basket/basket-product/baske
 import { QuantityControlComponent } from './controles/quantity-control/quantity-control.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { InputOnlyNumberDirective } from './directives/input-only-number.directive';
+import {MatIcon} from "@angular/material/icon";
+import {MatButton} from "@angular/material/button";
+import {MatTooltip} from "@angular/material/tooltip";
 
 
 @NgModule({
@@ -22,7 +25,10 @@ import { InputOnlyNumberDirective } from './directives/input-only-number.directi
   imports: [
     CommonModule,
     BasketRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIcon,
+    MatButton,
+    MatTooltip
   ]
 })
 export class BasketModule { }
