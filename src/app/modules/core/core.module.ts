@@ -8,11 +8,13 @@ import {MatButton} from "@angular/material/button";
 import {MatPaginatorIntl} from "@angular/material/paginator";
 import {CustomMatPaginatorIntl} from "./material/mat-paginator-custom-intl";
 import {MatIcon} from "@angular/material/icon";
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
     imports: [
         CommonModule,
@@ -22,7 +24,8 @@ import {MatIcon} from "@angular/material/icon";
         MatIcon,
     ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   providers: [
     provideHttpClient(
