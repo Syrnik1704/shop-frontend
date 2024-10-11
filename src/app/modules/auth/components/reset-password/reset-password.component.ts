@@ -34,9 +34,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   getErrorMessage(control: FormControl): string {
-    const error = this.formService.getErrorMessage(control);
-    this.toastr.error(`${error}`, "ERROR");
-    return error;
+    return this.formService.getErrorMessage(control);
   }
 
   onPasswordReset() {
