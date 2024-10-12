@@ -34,7 +34,7 @@ export class OrderComponent implements OnInit {
         },
         error: (err) => {
           this.errorMsg = err;
-          this.toastr.error(`Error occurred while getting orders: ${err}`, "ERROR");
+          this.toastr.error(`Error occurred while getting order: ${err}`, "ERROR");
         },
       });
   }

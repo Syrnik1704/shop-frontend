@@ -28,3 +28,13 @@ export interface GetOrderResponse {
   items: BasketProduct[];
   summaryPrice: number;
 }
+
+export interface GetOrdersResponse {
+  uid: string;
+  orders: string;
+  status: string;
+  customerDetails: Customer;
+  address: Address;
+  deliver: GetDelivery;
+}
+

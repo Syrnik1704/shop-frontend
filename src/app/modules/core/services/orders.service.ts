@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {environment} from "../../../../environments/environment.development";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable, tap} from "rxjs";
-import {GetOrderResponse, PostOrderBody, PostOrderResponse} from "../models/order.model";
+import {GetOrderResponse, GetOrdersResponse, PostOrderBody, PostOrderResponse} from "../models/order.model";
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +30,10 @@ export class OrdersService {
     });
   }
 
+  getOrders(): Observable<GetOrdersResponse[]> {
+    return this.http.get<GetOrdersResponse[]>(`${this.apiUrl}`, {
+      withCredentials: true,
+    });
+  }
 
 }
