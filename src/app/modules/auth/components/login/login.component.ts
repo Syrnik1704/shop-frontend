@@ -7,7 +7,6 @@ import {Store} from "@ngrx/store";
 import {AppState} from "../../../../store/app.reducer";
 import {Observable} from "rxjs";
 import {authLoadingSelector} from "../../store/auth.selectors";
-import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -15,6 +14,7 @@ import {ToastrService} from "ngx-toastr";
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnDestroy {
+
   loginForm!: FormGroup<LoginForm>;
   loading$: Observable<boolean>;
 

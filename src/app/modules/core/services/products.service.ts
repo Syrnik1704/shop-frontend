@@ -1,14 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable}  from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {
-  AddProductData,
-  GetProductsResponse,
-  ProductResponse,
-  Product,
-  SimpleProduct
-} from "../models/product.model";
+import {AddProductData, GetProductsResponse, ProductResponse, Product, SimpleProduct} from "../models/product.model";
 import {map} from "rxjs/operators";
 
 @Injectable({
@@ -17,7 +11,7 @@ import {map} from "rxjs/operators";
 export class ProductsService {
   apiUrl = `${environment.apiUrl}/product`;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   getProducts(
     pageIndex: number = 1,

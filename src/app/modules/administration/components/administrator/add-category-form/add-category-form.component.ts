@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {AddCategoryForm} from "../../../../core/models/forms.model";
 import {FormService} from "../../../../core/services/form.service";

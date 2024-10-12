@@ -13,8 +13,10 @@ export class BasketProductComponent {
   @Input() basketProduct!: BasketProduct;
   @Output() deleteProductUid = new EventEmitter<string>();
 
-  constructor(private basketService: BasketService, private toastr: ToastrService) {
-  }
+  constructor(
+    private basketService: BasketService,
+    private toastr: ToastrService
+  ) {}
 
   deleteProductFromBasket() {
     this.basketService.deleteProductFromBasket(this.basketProduct.uid).subscribe({

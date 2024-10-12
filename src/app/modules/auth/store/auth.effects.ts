@@ -5,7 +5,7 @@ import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {catchError, map, switchMap} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
-import {EMPTY, of} from "rxjs";
+import {of} from "rxjs";
 
 @Injectable()
 export class AuthEffects {

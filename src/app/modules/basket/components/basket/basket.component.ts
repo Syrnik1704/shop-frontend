@@ -9,13 +9,16 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrl: './basket.component.scss'
 })
 export class BasketComponent implements OnInit {
+
   basketProducts: BasketProduct[] = [];
   summaryPrice = 0;
   errorMessage: string | null = null;
 
-  constructor(private basketService: BasketService,
-              private router: Router,
-              private route: ActivatedRoute) {}
+  constructor(
+    private basketService: BasketService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.basketService.getBasketProducts().subscribe({

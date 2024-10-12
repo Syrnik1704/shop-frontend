@@ -9,12 +9,9 @@ import {map} from "rxjs/operators";
 
 function extractResponse(response: HttpResponse<ServerResponse | GetBasketResponse>): BasketResponse {
   if (!response.body) return { body: null, totalCount: 0 };
-
   const totalCount = Number(response.headers.get('X-Total-Count'));
-
   return { body: { ...response.body }, totalCount };
 }
-
 
 @Injectable({
   providedIn: 'root'

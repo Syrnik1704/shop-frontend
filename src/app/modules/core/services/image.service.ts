@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {HttpClient, HttpEvent, HttpParams, HttpResponse,} from '@angular/common/http';
 import {Observable} from "rxjs";
@@ -10,6 +10,7 @@ import {AngularEditorConfig, UploadResponse} from "@kolkov/angular-editor";
   providedIn: 'root'
 })
 export class ImageService {
+
   apiUrl = `${environment.apiUrl}/image`;
 
   config: AngularEditorConfig = {
@@ -17,7 +18,7 @@ export class ImageService {
     spellcheck: true,
     height: '15rem',
     minHeight: '5rem',
-    placeholder: 'Wpisz tekst tutaj...',
+    placeholder: 'Enter text here...',
     translate: 'no',
     defaultParagraphSeparator: 'p',
     defaultFontName: 'Arial',
@@ -54,7 +55,6 @@ export class ImageService {
       })
       .pipe(
         map((resp) => {
-          console.log("DUPA" + resp)
           return { url: `${this.apiUrl}?uid=${resp.uid}` };
         })
       );

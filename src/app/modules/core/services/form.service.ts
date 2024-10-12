@@ -1,7 +1,10 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {
-  AddCategoryForm, AddressForm, CustomerForm, DeliveryForm,
+  AddCategoryForm,
+  AddressForm,
+  CustomerForm,
+  DeliveryForm,
   LoginForm,
   PostProduct,
   RecoverPasswordForm,

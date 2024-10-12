@@ -20,10 +20,12 @@ export class CreateOrderComponent implements OnInit {
   @ViewChild(AddressFormComponent) addressFormComponent!: AddressFormComponent;
   @ViewChild(DeliveryFormComponent) deliveryFormComponent!: DeliveryFormComponent;
 
-  constructor(private location: Location,
-              private router: Router,
-              private ordersService: OrdersService,
-              private toastr: ToastrService) {}
+  constructor(
+    private location: Location,
+    private router: Router,
+    private ordersService: OrdersService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {
     const locationState = this.location.getState() as {

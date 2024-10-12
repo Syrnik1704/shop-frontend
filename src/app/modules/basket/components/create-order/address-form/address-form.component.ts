@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormService} from "../../../../core/services/form.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {AddressForm} from "../../../../core/models/forms.model";
@@ -9,9 +9,12 @@ import {AddressForm} from "../../../../core/models/forms.model";
   styleUrl: './address-form.component.scss'
 })
 export class AddressFormComponent {
+
   addressForm: FormGroup<AddressForm>;
 
-  constructor(private formService: FormService) {
+  constructor(
+    private formService: FormService
+  ) {
     this.addressForm = this.formService.initAddressForm();
   }
 

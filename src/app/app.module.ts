@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { StoreModule } from '@ngrx/store';
-import {CoreModule} from "./modules/core/core.module";
+import { CoreModule } from "./modules/core/core.module";
 import { EffectsModule } from '@ngrx/effects';
-import {AuthModule} from "./modules/auth/auth.module";
-import {authReducer} from "./modules/auth/store/auth.reducer";
-import {ToastrModule} from "ngx-toastr";
-import {AuthEffects} from "./modules/auth/store/auth.effects";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { AuthModule } from "./modules/auth/auth.module";
+import { ToastrModule } from "ngx-toastr";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
+import { AppComponent } from './app.component';
+import { AuthEffects } from "./modules/auth/store/auth.effects";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { authReducer } from "./modules/auth/store/auth.reducer";
 
 @NgModule({
   declarations: [

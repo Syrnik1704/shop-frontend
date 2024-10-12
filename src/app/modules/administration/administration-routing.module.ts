@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {AdministratorComponent} from "./components/administrator/administrator.component";
 import {AddCategoryFormComponent} from "./components/administrator/add-category-form/add-category-form.component";
 import {ManageProductsComponent} from "./components/administrator/manage-products/manage-products.component";

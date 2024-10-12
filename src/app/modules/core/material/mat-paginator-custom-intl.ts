@@ -3,15 +3,11 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 
 @Injectable()
 export class CustomMatPaginatorIntl extends MatPaginatorIntl {
-  // override getRangeLabel = (page: number, pageSize: number, length: number) => {
-  //   return '';
-  // };
 
   override getRangeLabel = (page: number, pageSize: number, length: number) => {
     if (length === 0 || pageSize === 0) {
       return `0 of ${length}`;
     }
-
     const startIndex = page * pageSize;
     const endIndex =
       startIndex < length

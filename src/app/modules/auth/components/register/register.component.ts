@@ -1,13 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {RegisterForm} from "../../../core/models/forms.model";
 import {FormService} from "../../../core/services/form.service";
 import * as AuthActions from "../../store/auth.actions";
 import {AppState} from "../../../../store/app.reducer";
 import {Store} from "@ngrx/store";
-import {Observable, Subscription, take} from "rxjs";
-import {authErrorSelector, authLoadingSelector} from "../../store/auth.selectors";
-import {ToastrService} from "ngx-toastr";
+import {Observable} from "rxjs";
+import {authLoadingSelector} from "../../store/auth.selectors";
 
 @Component({
   selector: 'app-register',
@@ -15,10 +14,14 @@ import {ToastrService} from "ngx-toastr";
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent implements OnDestroy {
+
   registerForm!: FormGroup<RegisterForm>;
   loading$: Observable<boolean>;
 
-  constructor(private formService: FormService, private store: Store<AppState>) {
+  constructor(
+    private formService: FormService,
+    private store: Store<AppState>
+  ) {
     this.registerForm = this.formService.initRegisterForm();
     this.loading$ = this.store.select(authLoadingSelector);
   }

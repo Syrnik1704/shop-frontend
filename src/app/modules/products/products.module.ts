@@ -22,19 +22,19 @@ import {BasketModule} from "../basket/basket.module";
     ProductDetailsComponent,
     ImagesCarouselComponent
   ],
-    imports: [
-        CommonModule,
-        ProductsRoutingModule,
-        MatPaginator,
-        MatFormField,
-        MatInput,
-        MatLabel,
-        ReactiveFormsModule,
-        MatAutocompleteModule,
-        MatOption,
-        MatButton,
-        MatSelect,
-        BasketModule
-    ]
+  imports: [
+      CommonModule,
+      ProductsRoutingModule,
+      MatPaginator,
+      MatFormField,
+      MatInput,
+      MatLabel,
+      ReactiveFormsModule,
+      MatAutocompleteModule,
+      MatOption,
+      MatButton,
+      MatSelect,
+      BasketModule
+  ]
 })
 export class ProductsModule { }

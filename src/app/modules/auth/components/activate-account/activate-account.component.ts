@@ -11,10 +11,15 @@ import {ToastrService} from "ngx-toastr";
   styleUrl: './activate-account.component.scss'
 })
 export class ActivateAccountComponent implements OnInit {
+
   errorMessage!: null | string;
 
-  constructor(private route: ActivatedRoute, private authService: AuthService,
-              private toastr: ToastrService, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private authService: AuthService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.route.paramMap.pipe(

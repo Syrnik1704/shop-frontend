@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ImageService} from "../../../../../core/services/image.service";
 import {Image} from "../../../../../core/models/image.model";
 import {ToastrService} from "ngx-toastr";
@@ -44,7 +44,7 @@ export class AddProductFormComponent {
     this.categories = this.categoriesService.categories;
     this.addProductForm = this.formService.initAddProductForm();
   }
-  
+
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0] as File;
     if (this.selectedFile) {
@@ -146,4 +146,3 @@ export class AddProductFormComponent {
   }
 
 }
-

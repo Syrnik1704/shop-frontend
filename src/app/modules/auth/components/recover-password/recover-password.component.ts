@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {RecoverPasswordForm} from "../../../core/models/forms.model";
 import {FormService} from "../../../core/services/form.service";
@@ -11,11 +11,15 @@ import {ToastrService} from "ngx-toastr";
   styleUrl: './recover-password.component.scss'
 })
 export class RecoverPasswordComponent {
+
   recoverPasswordForm!: FormGroup<RecoverPasswordForm>;
   isLoading: boolean = false;
 
-  constructor(private formService: FormService, private authService: AuthService,
-              private toastr: ToastrService) {
+  constructor(
+    private formService: FormService,
+    private authService: AuthService,
+    private toastr: ToastrService
+  ) {
     this.recoverPasswordForm = this.formService.initRecoverPasswordForm();
   }
 

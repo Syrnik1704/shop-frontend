@@ -19,6 +19,7 @@ export class DeleteProductDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<DeleteProductDialogComponent>,
     private toastr: ToastrService
   ) {}
+
   ngOnInit(): void {
     this.productsService.getProduct(this.data.name, this.data.date).subscribe({
       next: (product) => {

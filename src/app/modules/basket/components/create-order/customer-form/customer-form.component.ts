@@ -10,9 +10,12 @@ import {ToastrService} from "ngx-toastr";
   styleUrl: './customer-form.component.scss'
 })
 export class CustomerFormComponent {
+
   customerForm: FormGroup<CustomerForm>;
 
-  constructor(private formService: FormService, private toastr: ToastrService) {
+  constructor(
+    private formService: FormService
+  ) {
     this.customerForm = this.formService.initCustomerForm();
   }
 

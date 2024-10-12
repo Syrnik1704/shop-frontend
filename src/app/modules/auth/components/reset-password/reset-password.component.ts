@@ -12,12 +12,17 @@ import {ToastrService} from "ngx-toastr";
   styleUrl: './reset-password.component.scss'
 })
 export class ResetPasswordComponent implements OnInit {
+
   resetPasswordForm!: FormGroup<ResetPasswordForm>;
   uid = "";
 
-  constructor(private formService: FormService, private route: ActivatedRoute,
-              private authService: AuthService, private toastr: ToastrService,
-              private router: Router) {
+  constructor(
+    private formService: FormService,
+    private route: ActivatedRoute,
+    private authService: AuthService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {
     this.resetPasswordForm = this.formService.initResetPasswordForm();
   }
 

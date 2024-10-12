@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormService} from "../../../../core/services/form.service";
 import {FormGroup} from "@angular/forms";
 import {DeliveryForm} from "../../../../core/models/forms.model";
@@ -11,14 +11,16 @@ import {ToastrService} from "ngx-toastr";
   templateUrl: './delivery-form.component.html',
   styleUrl: './delivery-form.component.scss'
 })
-export class DeliveryFormComponent {
+export class DeliveryFormComponent implements OnInit {
   deliveryForm: FormGroup<DeliveryForm>;
   deliveryTypes: GetDelivery[] = [];
   errorMsg: string | null = null;
 
-  constructor(private formService: FormService,
-              private deliveryService: DeliveryService,
-              private toastr: ToastrService) {
+  constructor(
+    private formService: FormService,
+    private deliveryService: DeliveryService,
+    private toastr: ToastrService
+  ) {
     this.deliveryForm = this.formService.initDeliveryForm();
   }
 

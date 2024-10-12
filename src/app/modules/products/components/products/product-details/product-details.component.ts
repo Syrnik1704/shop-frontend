@@ -33,7 +33,6 @@ export class ProductDetailsComponent implements OnInit {
   };
 
   ngOnInit() {
-
     this.route.paramMap.pipe(
       switchMap((paramMap) => {
         const [name, creation_date] = (paramMap.get("id") as string).split("-");
